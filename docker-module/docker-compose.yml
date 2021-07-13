@@ -1,0 +1,32 @@
+version: "3"
+services:
+    db: 
+        image: postgres
+        container_name: "pg_container"
+        environment:
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=root
+            - POSTGRES_DB=test_db
+        ports:
+            - "5432:5432"
+        volumes:
+            - "./db:/var/lib/postgresql/data"
+        # create table public."Happiness" (
+        #     "country_name" VARCHAR(31) NULL,
+        #     "year" int8 null,
+        #     "life_ladder" float8 null,
+        #     "log_GDP_per_capita" float32 null,
+        #     "social_support" float8 null,
+        #     "healthy_life_expectancy" float8 null,
+        #     "freedom_to_make_life_choices" float4 null,
+        #     "generosity" float4 null,
+        #     "perceptions_of_corruption" float4 null,
+        #     "positive_affect" float4 null,
+        #     "negative_affect" float4 null
+        # )
+    bi:
+        image: metabase/metabase
+        ports:
+            - 3000:3000
+        links:
+            - db
