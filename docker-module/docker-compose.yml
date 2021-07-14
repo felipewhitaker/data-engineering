@@ -10,7 +10,7 @@ services:
         ports:
             - "5432:5432"
         volumes:
-            - "./db:/var/lib/postgresql/data" # TODO: persist volume
+            - "data:/var/lib/postgresql/data" # TODO: persist volume : https://docs.docker.com/storage/volumes/
         # create table public."Happiness" (
         #     "country_name" VARCHAR(31) NULL,
         #     "year" int8 null,
