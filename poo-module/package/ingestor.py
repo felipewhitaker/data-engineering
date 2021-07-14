@@ -34,7 +34,7 @@ class DaySummaryIngestor(DataIngestor):
         super().__init__(writer, currencies, default_start_date)
 
     def get_writer(self, api, currency, date):
-        return self.writer(f'/{api.__class__.__name__}/{currency}/{date}.json')
+        return self.writer(f'{api.__class__.__name__}/{currency}/{date}.json')
 
     def ingest(self) -> None:
 
@@ -48,5 +48,5 @@ class DaySummaryIngestor(DataIngestor):
                 # TODO: update date
 
 if __name__ == '__main__':
-    dsi = DaySummaryIngestor(writer = DataWriter, currencies = ['BTC', 'ETH'], default_start_date = datetime(2021, 7, 13))
+    dsi = DaySummaryIngestor(writer = DataWriter, currencies = ['BTC', 'ETH'], default_start_date = datetime(2021, 7, 10))
     dsi.ingest()

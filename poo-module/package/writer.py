@@ -12,7 +12,6 @@ class DataWriter:
         self.filename = filename
 
     def _write_row(self, row: str) -> None:
-        print(os.path.dirname(self.filename))
         os.makedirs(os.path.dirname(self.filename), exist_ok = True)
         with open(self.filename, 'a+') as f:
             f.write(row + '\n')
