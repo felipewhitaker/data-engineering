@@ -1,7 +1,7 @@
 from schedule import repeat, every, run_pending
 from datetime import datetime
-from package.ingestor import DaySummaryIngestor, TradeIngestor
-from package.writer import DataWriter
+from src.writer.writer import DataWriter
+from src.ingestor.ingestor import DaySummaryIngestor, TradeIngestor
 
 
 if __name__ == "__main__":

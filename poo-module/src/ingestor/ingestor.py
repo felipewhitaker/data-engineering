@@ -3,8 +3,9 @@ from typing import List
 
 from datetime import datetime, timedelta
 
-from writer import DataWriter
-from currency_api import DaySummaryAPI, TradeAPI
+from api.currency_api import DaySummaryAPI, TradeAPI
+from writer.writer import DataWriter
+
 
 
 class DataIngestor(ABC):
