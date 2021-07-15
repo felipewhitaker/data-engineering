@@ -10,6 +10,8 @@ from backoff import on_exception, expo
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
+
+
 class Currency(ABC):
 
     BASE_URL = "https://www.mercadobitcoin.net/api/"
@@ -84,9 +86,9 @@ class Currency(ABC):
         }
         self._currency = currency
 
-    @on_exception(expo, ratelimit.exception.RateLimitException, max_tries = 10)
-    @ratelimit.limits(calls = 25, period = 30)
-    @on_exception(expo, requests.exceptions.HTTPError, max_tries = 20)
+    @on_exception(expo, ratelimit.exception.RateLimitException, max_tries=10)
+    @ratelimit.limits(calls=25, period=30)
+    @on_exception(expo, requests.exceptions.HTTPError, max_tries=20)
     def get_data(self, /, *args, **kwargs) -> dict:
         url = self._get_endpoint(*args, **kwargs)
         logger.info(f" Getting data from {url}")
@@ -103,7 +105,7 @@ class DaySummaryAPI(Currency):
 
     PATH = "day-summary"
 
-    def _get_endpoint(self, date: datetime) ->dict:
+    def _get_endpoint(self, date: datetime) -> dict:
         year, month, day = date.year, date.month, date.day
         url = f"{self.currency}/{self.PATH}/{year}/{month}/{day}/"
         return url
