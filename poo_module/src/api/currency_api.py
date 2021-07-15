@@ -130,6 +130,8 @@ class TradeAPI(Currency):
 
         elif date_to:
             assert date_from
+            if date_from > date_to:
+                raise RuntimeError('`date_from` should not be greater than `date_to`')
             url += f"{self._get_unix_epoch(date_to)}/"
 
         return url
