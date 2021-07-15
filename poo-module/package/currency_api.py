@@ -5,10 +5,11 @@ import logging
 
 from datetime import datetime
 
+import ratelimit
+from backoff import on_exception, expo
+
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
-
-
 class Currency(ABC):
 
     BASE_URL = "https://www.mercadobitcoin.net/api/"
@@ -83,9 +84,12 @@ class Currency(ABC):
         }
         self._currency = currency
 
+    @on_exception(expo, ratelimit.exception.RateLimitException, max_tries = 10)
+    @ratelimit(calls = 25, period = 30)
+    @on_exception(expo, requests.exceptions.HTTPError, max_tries = 20)
     def get_data(self, /, *args, **kwargs) -> dict:
         url = self._get_endpoint(*args, **kwargs)
-        logger.info(f"Getting data from {url}")
+        logger.info(f" Getting data from {url}")
         req = requests.get(self.BASE_URL + url)
         req.raise_for_status()
         return req.json()
