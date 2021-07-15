@@ -85,7 +85,7 @@ class Currency(ABC):
         self._currency = currency
 
     @on_exception(expo, ratelimit.exception.RateLimitException, max_tries = 10)
-    @ratelimit(calls = 25, period = 30)
+    @ratelimit.limits(calls = 25, period = 30)
     @on_exception(expo, requests.exceptions.HTTPError, max_tries = 20)
     def get_data(self, /, *args, **kwargs) -> dict:
         url = self._get_endpoint(*args, **kwargs)
