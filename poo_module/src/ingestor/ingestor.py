@@ -3,10 +3,9 @@ from typing import List
 
 from datetime import datetime, timedelta
 
-# TODO understand how to make relative imports 
-from src.api.currency_api import DaySummaryAPI, TradeAPI
-from src.writer.writer import DataWriter
-
+# TODO understand how to make relative imports
+from poo_module.src.api.currency_api import DaySummaryAPI, TradeAPI
+from poo_module.src.writer.writer import DataWriter
 
 
 class DataIngestor(ABC):
