@@ -2,7 +2,7 @@ from datetime import datetime
 from poo_module.src.ingestor.ingestor import DataIngestor
 from poo_module.src.writer.writer import DataWriter
 
-import pytest
+import pytest # type:ignore
 from unittest.mock import mock_open, patch
 
 
