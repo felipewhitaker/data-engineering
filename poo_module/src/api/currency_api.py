@@ -15,18 +15,7 @@ logging.basicConfig(level=logging.INFO)
 class Currency(ABC):
 
     BASE_URL = "https://www.mercadobitcoin.net/api/"
-
-    def __init__(self, currency: str):
-        self._currency = currency
-        return
-
-    @property
-    def currency(self) -> str:
-        return self._currency
-
-    @currency.setter
-    def _set_currency(self, currency: str):
-        assert currency in {
+    CURRENCIES = {
             "AAVE",
             "ACMFT",
             "ACORDO01",
@@ -83,7 +72,19 @@ class Currency(ABC):
             "XRP",
             "YFI",
             "ZRX",
-        }
+    }
+
+    def __init__(self, currency: str):
+        self._currency = currency
+        return
+
+    @property
+    def currency(self) -> str:
+        return self._currency
+
+    @currency.setter
+    def _set_currency(self, currency: str):
+        assert currency in self.CURRENCIES
         self._currency = currency
 
     @on_exception(expo, ratelimit.exception.RateLimitException, max_tries=10)
