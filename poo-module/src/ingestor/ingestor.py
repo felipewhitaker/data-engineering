@@ -3,8 +3,9 @@ from typing import List
 
 from datetime import datetime, timedelta
 
-from api.currency_api import DaySummaryAPI, TradeAPI
-from writer.writer import DataWriter
+# TODO understand how to make relative imports 
+from src.api.currency_api import DaySummaryAPI, TradeAPI
+from src.writer.writer import DataWriter
 
 
 
