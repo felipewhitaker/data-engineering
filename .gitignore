@@ -135,3 +135,5 @@ dmypy.json
 data/*.csv
 */data/*
 *.json
+
+jenkins_module/jenkins_home
