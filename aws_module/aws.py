@@ -1,10 +1,10 @@
 from typing import get_args
-import boto3
+import boto3 #type: ignore
 
 import time
 
-from botocore import exceptions
-from botocore.exceptions import ClientError
+from botocore import exceptions #type: ignore
+from botocore.exceptions import ClientError #type: ignore
 
 import logging
 import logging
@@ -12,7 +12,7 @@ logging.getLogger()
 logging.basicConfig()
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger().setLevel(logging.ERROR)
-from dotenv import load_dotenv
+from dotenv import load_dotenv #type: ignore
 from os import getenv
 
 load_dotenv('./.env')
